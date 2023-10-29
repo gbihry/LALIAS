@@ -63,9 +63,7 @@
     }
 
     function resetAnswers(){
-        answers.splice(0, answers.length);
-
-        answers = answers;
+        answers = [];
         right = null;
     }
     
