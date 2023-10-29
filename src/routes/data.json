@@ -41,6 +41,24 @@
                         "voudrais",
                         "un café"
                     ]
+                },
+                "Addition":{
+                    "name": "Addition",
+                    "url_image": "https://picsum.photos/600/300",
+                    "base_line": "Votre moyen de paiement ?",
+                    "blank_state": [
+                        "j'aimerai",
+                        "la carte",
+                        "s'il vous plait"
+                    ],
+                    "words": [
+                        "utiliser",
+                        "bancaire"
+                    ],
+                    "answers": [
+                        "utiliser",
+                        "bancaire"
+                    ]
                 }
             }
         },

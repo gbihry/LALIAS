@@ -3,6 +3,7 @@
     import { _dictionary } from "../../../data.json";
     import autoAnimate from "@formkit/auto-animate";
     import { viewTransition } from "$lib/utils";
+    import { goto } from '$app/navigation';
 
     import { page } from "$app/stores";
 
@@ -11,6 +12,8 @@
 
     let answers: string[] = [];
     let right: boolean | null = null;
+
+    $: localEtape  = 0;
 
     function handleClick(word: string) {
         if (answers.length < etape.answers.length) {
@@ -48,6 +51,24 @@
         return array;
     }
 
+    function nextStage(){
+        let etapes = Object.keys(situtation.Etapes);
+        resetAnswers();
+        if ((localEtape + 1) == etapes.length){
+            goto("/");
+        }else{
+            localEtape++;
+            goto("./" + etapes[localEtape]);
+        }
+    }
+
+    function resetAnswers(){
+        answers.splice(0, answers.length);
+
+        answers = answers;
+        right = null;
+    }
+    
     $: shuffled = shuffle([...(etape?.words || []), ..._dictionary]);
 </script>
 
@@ -86,12 +107,18 @@
             {/if}
         {/each}
     </div>
-    <button on:click={() => validate()}> Valider </button>
-    {#if right === true}
-        gg
-    {:else if right === false}
-        ratio
-    {/if}
+    <div class="verif">
+        <button class="btn verify" on:click={() => validate()}> Valider </button>
+        {#if right === true}
+            <div class="next">
+                <button class="btn success" on:click={() => nextStage()}>Prochaine étape</button>
+            </div>
+        {:else if right === false}
+            <div class="false">
+                <button class="btn error" on:click={() => resetAnswers()}>Réssayer</button>
+            </div>
+        {/if}
+    </div>
 </div>
 
 <style>
@@ -159,5 +186,31 @@
                 rgba(31, 11, 78, 0.17) 100%
             ),
             var(--base-200, #e3e3e8);
+    }
+
+    .verif {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn {
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 6px 3px;
+        border-radius: 5px;
+        margin: 10px 0px;
+    }
+
+    .btn.verify {
+        background-color: rgb(166, 166, 232);
+    }
+    
+    .btn.success {
+        background-color: rgb(166, 232, 173);
+    }
+
+    .btn.error {
+        background-color: rgb(232, 166, 166);
     }
 </style>
