@@ -13,8 +13,6 @@
     let answers: string[] = [];
     let right: boolean | null = null;
 
-    $: localEtape  = 0;
-
     function handleClick(word: string) {
         if (answers.length < etape.answers.length) {
             answers = [...answers, word];
@@ -52,14 +50,27 @@
     }
 
     function nextStage(){
+        //Récupérer le nom de l'étape actuel
+        let currentEtape = etape.name;
+        //Transformer les étapes en tableau
         let etapes = Object.keys(situtation.Etapes);
-        resetAnswers();
-        if ((localEtape + 1) == etapes.length){
-            goto("/");
-        }else{
-            localEtape++;
-            goto("./" + etapes[localEtape]);
-        }
+        //Récupérer l'index de notre étape actuel dans un tabkeau
+        let currentIndex = etapes.indexOf(currentEtape);
+        etapes.forEach(element => {
+            //Si l'étape actuel est égal à l'élement
+            if (currentEtape == element){
+                //Si une étape existe après celle ou l'on est
+                if (etapes[currentIndex + 1]){
+                    //Aller à l'étape actuel + 1
+                    resetAnswers();
+                    goto("./" + etapes[currentIndex + 1]);
+                }else{
+                    //Sinon aller à l'accueil
+                    resetAnswers();
+                    goto("/");
+                }
+            }
+        })
     }
 
     function resetAnswers(){
