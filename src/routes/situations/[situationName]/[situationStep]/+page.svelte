@@ -91,7 +91,7 @@
 			<p class="">{blank}</p>
 			{#if i != blankStates.length - 1}
 				<button
-					class="h-[1em] min-w-[5rem] rounded-lg bg-border"
+					class="h-[1.5em] min-w-[5rem] rounded-lg bg-border"
 					on:click={() => (answers[i] ? removeWord(answers[i]) : null)}
 				>
 					{answers[i] || ''}
