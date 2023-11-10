@@ -7,7 +7,7 @@
 </script>
 
 <aside
-	class="m-4 flex h-full flex-col rounded-lg bg-background"
+	class="ml-4 mt-4 flex h-full w-64 flex-col rounded-lg bg-card"
 	style="view-transition-name: sidebar;"
 >
 	{#each Object.values(situation.steps) as step}
@@ -25,6 +25,6 @@
 
 <style>
 	aside {
-		height: calc(100vh - 6rem);
+		height: calc(100vh - 7rem);
 	}
 </style>

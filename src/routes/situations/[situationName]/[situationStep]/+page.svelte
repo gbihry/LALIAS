@@ -2,10 +2,14 @@
 	import autoAnimate from '@formkit/auto-animate';
 	import { goto } from '$app/navigation';
 
-	import { getSituationStep } from '$lib/utils/context';
 	import { DICTIONARY, SITUATIONS } from '$lib/DATA';
+	import { page } from '$app/stores';
 
-	const step = getSituationStep();
+	let situation = SITUATIONS[$page.params.situationName];
+	$: situation = SITUATIONS[$page.params.situationName];
+
+	let step = situation.steps[$page.params.situationStep];
+	$: step = situation.steps[$page.params.situationStep];
 
 	let answers: string[] = [];
 	let right: boolean | null = null;
@@ -46,9 +50,10 @@
 		//Récupérer le nom de l'étape actuel
 		let currentEtape = step.name;
 		//Transformer les étapes en tableau
-		let etapes = Object.keys(SITUATIONS);
+		let etapes = Object.keys(situation.steps);
 		//Récupérer l'index de notre étape actuel dans un tabkeau
 		let currentIndex = etapes.indexOf(currentEtape);
+
 		//Si une étape existe après celle ou l'on est
 		if (etapes[currentIndex + 1]) {
 			//Aller à l'étape actuel + 1
@@ -67,23 +72,27 @@
 	}
 
 	$: shuffled = shuffle([...(step?.words || []), ...DICTIONARY]);
+	$: blankStates = step?.blank_state || [];
 </script>
 
-<div class="container">
+<div class="m-4 mb-0 rounded-lg bg-card p-4" style="view-transition-name: {step?.name};">
 	<div
-		class="relative rounded-lg"
+		class="relative h-96 rounded-lg"
 		style="background: url({step.url_image}) no-repeat center center; background-size: cover;"
 	>
-		<p>{step.base_line}</p>
+		<p
+			class="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-lg bg-card px-4 py-2 font-title text-3xl"
+		>
+			{step.base_line}
+		</p>
 	</div>
 	<div class="flex flex-wrap items-center text-2xl">
-		{#each step.blank_state as blank, i}
+		{#each blankStates as blank, i}
 			<p class="">{blank}</p>
-			{#if i != step.blank_state.length - 1}
+			{#if i != blankStates.length - 1}
 				<button
 					class="h-[1em] min-w-[5rem] rounded-lg bg-border"
 					on:click={() => (answers[i] ? removeWord(answers[i]) : null)}
-					style={answers[i] ? `view-transition-name: ${answers[i]}` : ''}
 				>
 					{answers[i] || ''}
 				</button>
@@ -94,9 +103,7 @@
 	<div class="words" use:autoAnimate>
 		{#each shuffled as word (word)}
 			{#if !answers.includes(word)}
-				<button on:click={() => handleClick(word)} style="view-transition-name: {word}"
-					>{word}</button
-				>
+				<button on:click={() => handleClick(word)}>{word}</button>
 			{/if}
 		{/each}
 	</div>

@@ -46,7 +46,7 @@ const SITUATIONS: Situations = {
 				blank_state: ['Bonjour, un ', "s'il vous plait"],
 				name: 'accueil',
 				url_image: 'https://picsum.photos/500/300',
-				words: ['café', 'table', 'menu', 'gros caca', 'thanos'],
+				words: ['café', 'table', 'menu'],
 			},
 			addition: {
 				answers: ['utiliser', 'bancaire'],
@@ -76,7 +76,7 @@ const SITUATIONS: Situations = {
 				blank_state: ['Bonjour, un ', "s'il vous plait"],
 				name: 'accueil',
 				url_image: 'https://picsum.photos/500/300',
-				words: ['café', 'table', 'menu', 'gros caca', 'thanos'],
+				words: ['café', 'table', 'menu'],
 			},
 			commander: {
 				answers: ['café', ''],
