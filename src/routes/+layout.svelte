@@ -3,6 +3,7 @@
 	import '$lib/styles/main.scss';
 	import '../app.postcss';
 	import { onNavigate } from '$app/navigation';
+	import Header from '$lib/containers/layout/Header.svelte';
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -16,29 +17,6 @@
 	});
 </script>
 
-<header>
-	<nav>
-		<a href="/">LALIAS</a>
-	</nav>
-</header>
+<Header />
 
 <slot />
-
-<style>
-	header {
-		width: 100%;
-		padding: 16px;
-		box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.6);
-		background-color: white;
-		min-height: calc(6vh - 32px);
-		display: flex;
-		align-items: center;
-	}
-	a {
-		font-family: 'Poppins', sans-serif;
-		font-weight: 900;
-		font-size: 2rem;
-		color: black;
-		text-decoration: none;
-	}
-</style>
