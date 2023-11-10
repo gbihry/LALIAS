@@ -10,11 +10,11 @@
 	class="ml-4 mt-4 flex h-full w-64 flex-col rounded-lg bg-card"
 	style="view-transition-name: sidebar;"
 >
-	{#each Object.values(situation.steps) as step}
+	{#each Object.entries(situation.steps) as [key, step]}
 		<a
 			href={PAGES.situations_situationName_situationStep({
 				situationName: $page.params.situationName,
-				situationStep: step.name,
+				situationStep: key,
 			})}
 			class="border-b p-4 text-lg last:border-b-0"
 		>

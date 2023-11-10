@@ -22,39 +22,38 @@ export interface SituationStep {
 }
 
 const DICTIONARY = [
-	'Bonjour',
-	'Merci',
-	"S'il vous plait",
-	'Oui',
-	'Non',
-	'Pardon',
-	'Excusez moi',
-	'A bientôt',
-	'Au revoir',
-	'Désolé',
-	'Je suis désolé',
-	'Je ne comprends pas',
+	'Hello',
+	'Thanks',
+	"Please",
+	'Yes',
+	'No',
+	'Sorry',
+	'Excuse me',
+	'See you later',
+	'Good bye',
+	'I\'m sory',
+	'I don\'t understand',
 ] as const;
 
 const SITUATIONS: Situations = {
-	restaurant1: {
-		nom: 'restaurant1',
+	restaurant: {
+		nom: 'Restaurant',
 		steps: {
 			accueil: {
-				answers: ['café'],
-				base_line: 'Bonjour à vous, je peux vous aider ?',
-				blank_state: ['Bonjour, un ', "s'il vous plait"],
-				name: 'accueil',
+				answers: ['coffee'],
+				base_line: 'Hello, what do you want ?',
+				blank_state: ['Hello, one ', "please"],
+				name: 'Reception',
 				url_image: 'https://picsum.photos/500/300',
-				words: ['café', 'table', 'menu'],
+				words: ['coffee', 'table', 'restaurant menu'],
 			},
 			addition: {
-				answers: ['utiliser', 'bancaire'],
-				base_line: 'Votre moyen de paiement ?',
-				blank_state: ["j'aimerai", 'la carte', "s'il vous plait"],
-				name: 'addition',
+				answers: ['use', 'bank'],
+				base_line: 'How you want to pay ?',
+				blank_state: ["I would use the", 'card', "please"],
+				name: 'Paiement',
 				url_image: 'https://picsum.photos/600/300',
-				words: ['utiliser', 'bancaire'],
+				words: ['use', 'bank'],
 			},
 			commander: {
 				answers: ['voudrais', 'un café'],
@@ -67,8 +66,8 @@ const SITUATIONS: Situations = {
 		},
 		url: 'https://picsum.photos/500/300',
 	},
-	restaurant2: {
-		nom: 'restaurant2',
+	hotel: {
+		nom: 'Hotel',
 		steps: {
 			accueil: {
 				answers: ['café'],
