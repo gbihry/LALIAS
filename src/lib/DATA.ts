@@ -55,13 +55,13 @@ const SITUATIONS: Situations = {
 				url_image: 'https://picsum.photos/600/300',
 				words: ['use', 'bank'],
 			},
-			commander: {
-				answers: ['voudrais', 'un café'],
-				base_line: 'Que voulez vous commander ?',
-				blank_state: ['Bonjour, je ', 'commander', "s'il vous plait"],
-				name: 'commander',
+			order: {
+				answers: ['would like', 'a coffee'],
+				base_line: 'What would you like to order?',
+				blank_state: ['Hello, I ', 'order', "please"],
+				name: 'Order',
 				url_image: 'https://picsum.photos/600/300',
-				words: ['voudrais', 'un café', 'menu'],
+				words: ['would like', 'a coffee', 'a dinosaur'],
 			},
 		},
 		url: 'https://picsum.photos/500/300',
@@ -69,21 +69,21 @@ const SITUATIONS: Situations = {
 	hotel: {
 		nom: 'Hotel',
 		steps: {
-			accueil: {
-				answers: ['café'],
-				base_line: 'Bonjour à vous, je peux vous aider ?',
-				blank_state: ['Bonjour, un ', "s'il vous plait"],
-				name: 'accueil',
+			reception: {
+				answers: ['room', 'two'],
+				base_line: 'Hello, can I help you ?',
+				blank_state: ['Hello, a ', 'for', "please"],
+				name: 'Reception',
 				url_image: 'https://picsum.photos/500/300',
-				words: ['café', 'table', 'menu'],
+				words: ['room', 'two', 'toilet'],
 			},
-			commander: {
-				answers: ['café', ''],
-				base_line: 'Que voulez vous commander ?',
-				blank_state: ['Bonjour, je ', 'commander', "s'il vous plait"],
-				name: 'commander',
+			order: {
+				answers: ['a burger', 'and'],
+				base_line: 'What would you like to order ?',
+				blank_state: ['Hello,', 'please', "a orangina please"],
+				name: 'Order',
 				url_image: 'https://picsum.photos/600/300',
-				words: ['café', 'table', 'menu'],
+				words: ['a burger', 'and', 'a duck'],
 			},
 		},
 		url: 'https://picsum.photos/500/300',
