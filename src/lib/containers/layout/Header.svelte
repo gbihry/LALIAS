@@ -4,7 +4,7 @@
 </script>
 
 <header
-	class="sticky top-4 mx-4 mb-4 flex h-16 items-center justify-between gap-4 rounded-2xl bg-card p-4 xl:mx-auto"
+	class="sticky top-4 z-50 mx-4 mb-4 flex h-16 items-center justify-between gap-4 rounded-2xl bg-card p-4 xl:mx-auto"
 	style="view-transition-name: header;"
 >
 	<div class="flex items-center gap-2">

@@ -75,18 +75,18 @@
 	$: blankStates = step?.blank_state || [];
 </script>
 
-<div class="m-4 mb-0 rounded-lg bg-card p-4" style="view-transition-name: {step?.name};">
+<div class="m-4 mb-0 w-full rounded-2xl bg-card p-4" style="view-transition-name: {step?.name};">
 	<div
 		class="relative h-96 rounded-lg"
 		style="background: url({step.url_image}) no-repeat center center; background-size: cover;"
 	>
 		<p
-			class="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-lg bg-card px-4 py-2 font-title text-3xl"
+			class="subtitle absolute bottom-2 left-2 right-2 mx-auto w-fit rounded-lg bg-card px-4 py-2 text-center font-title text-2xl"
 		>
 			{step.base_line}
 		</p>
 	</div>
-	<div class="flex flex-wrap items-center text-2xl">
+	<div class="mt-2 flex flex-wrap items-center gap-2 text-2xl">
 		{#each blankStates as blank, i}
 			<p class="">{blank}</p>
 			{#if i != blankStates.length - 1}
@@ -100,7 +100,7 @@
 		{/each}
 	</div>
 	<!--UTILISER IMPORTANT (MAIS CALM DOWN) MAIS C EST COOL-->
-	<div class="words" use:autoAnimate>
+	<div class="mt-2" use:autoAnimate>
 		{#each shuffled as word (word)}
 			{#if !answers.includes(word)}
 				<button on:click={() => handleClick(word)}>{word}</button>
@@ -120,61 +120,3 @@
 		{/if}
 	</div>
 </div>
-
-<style>
-	.main p {
-		font-weight: 700;
-		color: white;
-		position: absolute;
-		bottom: 0;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
-
-	.words {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 10px;
-	}
-
-	.words button {
-		cursor: pointer;
-		margin: 0px;
-		font-size: 1.5rem;
-		font-weight: 900;
-		padding: 5px;
-		border-radius: 8px;
-		background: radial-gradient(
-				65.31% 70.71% at 50% 50%,
-				rgba(89, 32, 223, 0.13) 0%,
-				rgba(31, 11, 78, 0.17) 100%
-			),
-			var(--base-200, #e3e3e8);
-	}
-
-	.verif {
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.btn {
-		font-size: 1.5rem;
-		cursor: pointer;
-		padding: 6px 3px;
-		border-radius: 5px;
-		margin: 10px 0px;
-	}
-
-	.btn.verify {
-		background-color: rgb(166, 166, 232);
-	}
-
-	.btn.success {
-		background-color: rgb(166, 232, 173);
-	}
-
-	.btn.error {
-		background-color: rgb(232, 166, 166);
-	}
-</style>
