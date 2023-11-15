@@ -107,15 +107,15 @@
 			{/if}
 		{/each}
 	</div>
-	<div class="verif">
-		<button class="btn verify" on:click={() => validate()}> Valider </button>
+	<div class="flex gap-3">
+		<button class="bg-primary transition-colors rounded-lg p-2 hover:bg-primary/80 border-transparent text-primary-foreground" on:click={() => validate()}> Valider </button>
 		{#if right === true}
 			<div class="next">
-				<button class="btn success" on:click={() => nextStage()}>Prochaine étape</button>
+				<button class="bg-green-600 transition-colors rounded-lg p-2 hover:bg-green-600/80 border-transparent text-primary-foreground" on:click={() => nextStage()}>Prochaine étape</button>
 			</div>
 		{:else if right === false}
 			<div class="false">
-				<button class="btn error" on:click={() => resetAnswers()}>Réssayer</button>
+				<button class="bg-red-600 transition-colors rounded-lg p-2 hover:bg-red-600/80 border-transparent text-primary-foreground" on:click={() => resetAnswers()}>Réssayer</button>
 			</div>
 		{/if}
 	</div>
