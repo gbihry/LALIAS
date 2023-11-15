@@ -7,7 +7,8 @@
 export const PAGES = {
   "_ROOT": (sp?: Record<string, string | number>) =>  { return ensurePrefix(`/${appendSp(sp)}`) },
   "situations_situationName": (params: {situationName: number | string}, sp?: Record<string, string | number>) =>  { return `/situations/${params.situationName}${appendSp(sp)}` },
-  "situations_situationName_situationStep": (params: {situationName: number | string, situationStep: number | string}, sp?: Record<string, string | number>) =>  { return `/situations/${params.situationName}/${params.situationStep}${appendSp(sp)}` }
+  "situations_situationName_situationStep": (params: {situationName: number | string, situationStep: number | string}, sp?: Record<string, string | number>) =>  { return `/situations/${params.situationName}/${params.situationStep}${appendSp(sp)}` },
+  "situations_situationName_success": (params: {situationName: number | string}, sp?: Record<string, string | number>) =>  { return `/situations/${params.situationName}/success${appendSp(sp)}` }
 }
 
 export const SERVERS = {
@@ -57,7 +58,7 @@ const ensurePrefix = (str: string) => {
  * ```
  */
 export type ROUTES = { 
-  PAGES: { '_ROOT': never, 'situations_situationName': 'situationName', 'situations_situationName_situationStep': 'situationName' | 'situationStep' }
+  PAGES: { '_ROOT': never, 'situations_situationName': 'situationName', 'situations_situationName_situationStep': 'situationName' | 'situationStep', 'situations_situationName_success': 'situationName' }
   SERVERS: {  }
   ACTIONS: {  }
 }

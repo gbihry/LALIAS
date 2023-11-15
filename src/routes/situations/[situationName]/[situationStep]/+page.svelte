@@ -5,14 +5,18 @@
 	import { DICTIONARY, SITUATIONS } from '$lib/DATA';
 	import { page } from '$app/stores';
 
+	export let right: boolean | null = null;
+
 	let situation = SITUATIONS[$page.params.situationName];
 	$: situation = SITUATIONS[$page.params.situationName];
 
 	let step = situation.steps[$page.params.situationStep];
 	$: step = situation.steps[$page.params.situationStep];
 
+	$: actualStep = $page.params.situationStep;
+
 	let answers: string[] = [];
-	let right: boolean | null = null;
+	
 
 	function handleClick(word: string) {
 		if (answers.length < step.answers.length) {
@@ -48,13 +52,12 @@
 
 	function nextStage() {
 		//Récupérer le nom de l'étape actuel
-		let currentEtape = step.name;
+		let currentEtape = actualStep;
 		//Transformer les étapes en tableau
 		let etapes = Object.keys(situation.steps);
 		//Récupérer l'index de notre étape actuel dans un tabkeau
 		let currentIndex = etapes.indexOf(currentEtape);
-
-		//Si une étape existe après celle ou l'on est
+		
 		if (etapes[currentIndex + 1]) {
 			//Aller à l'étape actuel + 1
 			resetAnswers();
@@ -62,7 +65,7 @@
 		} else {
 			//Sinon aller à l'accueil
 			resetAnswers();
-			goto('/');
+			goto('./success');
 		}
 	}
 
@@ -91,7 +94,7 @@
 			<p class="">{blank}</p>
 			{#if i != blankStates.length - 1}
 				<button
-					class="h-[1.5em] min-w-[5rem] rounded-lg bg-border"
+					class="h-[1.5em] min-w-[5rem] rounded-lg border p-1 hover:bg-gray-200/80 transition-colors"
 					on:click={() => (answers[i] ? removeWord(answers[i]) : null)}
 				>
 					{answers[i] || ''}
@@ -100,22 +103,27 @@
 		{/each}
 	</div>
 	<!--UTILISER IMPORTANT (MAIS CALM DOWN) MAIS C EST COOL-->
-	<div class="mt-2" use:autoAnimate>
+	<div class="mt-2 flex gap-2" use:autoAnimate>
 		{#each shuffled as word (word)}
 			{#if !answers.includes(word)}
-				<button on:click={() => handleClick(word)}>{word}</button>
+				<button 
+					class="p-1 min-w-[5rem] rounded-lg border hover:bg-gray-200/80 transition-colors"
+					on:click={() => handleClick(word)}
+				>
+					{word}
+				</button>
 			{/if}
 		{/each}
 	</div>
-	<div class="flex gap-3">
-		<button class="bg-primary transition-colors rounded-lg p-2 hover:bg-primary/80 border-transparent text-primary-foreground" on:click={() => validate()}> Valider </button>
+	<div class="flex gap-3 mt-3">
+		<button class="bg-primary transition-colors rounded-lg p-2 hover:bg-primary/80 border-transparent text-primary-foreground" on:click={() => validate()}> Validate </button>
 		{#if right === true}
 			<div class="next">
-				<button class="bg-green-600 transition-colors rounded-lg p-2 hover:bg-green-600/80 border-transparent text-primary-foreground" on:click={() => nextStage()}>Prochaine étape</button>
+				<button class="bg-green-600 transition-colors rounded-lg p-2 hover:bg-green-600/80 border-transparent text-primary-foreground" on:click={() => nextStage()}>Next step</button>
 			</div>
 		{:else if right === false}
 			<div class="false">
-				<button class="bg-red-600 transition-colors rounded-lg p-2 hover:bg-red-600/80 border-transparent text-primary-foreground" on:click={() => resetAnswers()}>Réssayer</button>
+				<button class="bg-red-600 transition-colors rounded-lg p-2 hover:bg-red-600/80 border-transparent text-primary-foreground" on:click={() => resetAnswers()}>Retry</button>
 			</div>
 		{/if}
 	</div>

@@ -48,12 +48,12 @@ const SITUATIONS: Situations = {
 				words: ['coffee', 'table', 'restaurant menu'],
 			},
 			addition: {
-				answers: ['use', 'bank'],
+				answers: ['use', 'credit'],
 				base_line: 'How you want to pay ?',
-				blank_state: ["I would use the", 'card', "please"],
+				blank_state: ["I would ", ' the', "card please"],
 				name: 'Paiement',
 				url_image: 'https://picsum.photos/600/300',
-				words: ['use', 'bank'],
+				words: ['use', 'credit'],
 			},
 			order: {
 				answers: ['would like', 'a coffee'],
