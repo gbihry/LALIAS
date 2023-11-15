@@ -10,7 +10,7 @@
 </script>
 
 <aside
-	class="ml-4 mt-4 flex h-full w-64 flex-col rounded-2xl bg-card"
+	class="ml-4 mt-4 flex h-full w-64 flex-col rounded-2xl bg-card overflow-hidden"
 	style="view-transition-name: sidebar;"
 >
 	{#each Object.entries(situation.steps) as [key, step]}
