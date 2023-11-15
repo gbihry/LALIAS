@@ -4,6 +4,9 @@
 	import { PAGES } from '$lib/ROUTES';
 
 	export let situation: Situation;
+
+	$: actualStep = $page.params.situationStep
+	
 </script>
 
 <aside
@@ -11,15 +14,30 @@
 	style="view-transition-name: sidebar;"
 >
 	{#each Object.entries(situation.steps) as [key, step]}
-		<a
-			href={PAGES.situations_situationName_situationStep({
-				situationName: $page.params.situationName,
-				situationStep: key,
-			})}
-			class="border-b p-4 text-lg last:border-b-0"
-		>
-			{step.name}
-		</a>
+
+		{#if key == actualStep}
+			<a
+				href={PAGES.situations_situationName_situationStep({
+					situationName: $page.params.situationName,
+					situationStep: key,
+				})}
+				
+				class="border-b p-4 text-white text-lg font-bold last:border-b-0 bg-primary"
+			>
+				{step.name}
+			</a>
+		{:else}
+			<a
+				href={PAGES.situations_situationName_situationStep({
+					situationName: $page.params.situationName,
+					situationStep: key,
+				})}
+				
+				class="border-b p-4 text-lg font-bold last:border-b-0"
+			>
+				{step.name}
+			</a>
+		{/if}
 	{/each}
 </aside>
 
