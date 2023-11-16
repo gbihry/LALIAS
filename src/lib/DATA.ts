@@ -49,8 +49,8 @@ const SITUATIONS: Situations = {
 			},
 			addition: {
 				answers: ['use', 'credit'],
-				base_line: 'How you want to pay ?',
-				blank_state: ["I would ", ' the', "card please"],
+				base_line: 'How do you want to pay ?',
+				blank_state: ["I will ", ' the', "card please"],
 				name: 'Paiement',
 				url_image: 'https://picsum.photos/600/300',
 				words: ['use', 'credit'],

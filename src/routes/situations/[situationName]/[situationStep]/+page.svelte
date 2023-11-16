@@ -5,6 +5,8 @@
 	import { DICTIONARY, SITUATIONS } from '$lib/DATA';
 	import { page } from '$app/stores';
 
+	import { Button } from "$lib/components/ui/button";
+
 	export let right: boolean | null = null;
 
 	let situation = SITUATIONS[$page.params.situationName];
@@ -94,7 +96,7 @@
 			<p class="">{blank}</p>
 			{#if i != blankStates.length - 1}
 				<button
-					class="h-[1.5em] min-w-[5rem] rounded-lg border p-1 hover:bg-gray-200/80 transition-colors"
+					class="h-[1.5em] min-w-[5rem] rounded-lg border p-1 hover:bg-gray-200/40 transition-colors"
 					on:click={() => (answers[i] ? removeWord(answers[i]) : null)}
 				>
 					{answers[i] || ''}
@@ -103,27 +105,28 @@
 		{/each}
 	</div>
 	<!--UTILISER IMPORTANT (MAIS CALM DOWN) MAIS C EST COOL-->
-	<div class="mt-2 flex gap-2" use:autoAnimate>
+	<div class="mt-2 flex gap-2 flex-wrap" use:autoAnimate>
 		{#each shuffled as word (word)}
 			{#if !answers.includes(word)}
-				<button 
-					class="p-1 min-w-[5rem] rounded-lg border hover:bg-gray-200/80 transition-colors"
+				<Button 
+				variant="outline" 
+				class="hover:bg-white/90"
 					on:click={() => handleClick(word)}
 				>
 					{word}
-				</button>
+				</Button>
 			{/if}
 		{/each}
 	</div>
 	<div class="flex gap-3 mt-3">
-		<button class="bg-primary transition-colors rounded-lg p-2 hover:bg-primary/80 border-transparent text-primary-foreground" on:click={() => validate()}> Validate </button>
+		<Button on:click={() => validate()}> Validate </Button>
 		{#if right === true}
 			<div class="next">
-				<button class="bg-green-600 transition-colors rounded-lg p-2 hover:bg-green-600/80 border-transparent text-primary-foreground" on:click={() => nextStage()}>Next step</button>
+				<Button class="bg-success hover:bg-success/90" on:click={() => nextStage()}>Next step</Button>
 			</div>
 		{:else if right === false}
 			<div class="false">
-				<button class="bg-red-600 transition-colors rounded-lg p-2 hover:bg-red-600/80 border-transparent text-primary-foreground" on:click={() => resetAnswers()}>Retry</button>
+				<Button variant="destructive" class="text-white" on:click={() => resetAnswers()}>Retry</Button>
 			</div>
 		{/if}
 	</div>
