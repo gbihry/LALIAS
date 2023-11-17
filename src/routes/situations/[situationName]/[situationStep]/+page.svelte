@@ -7,6 +7,8 @@
 
 	import { Button } from "$lib/components/ui/button";
 
+	import party from "party-js";
+
 	export let right: boolean | null = null;
 
 	let situation = SITUATIONS[$page.params.situationName];
@@ -29,6 +31,9 @@
 	function validate() {
 		if (JSON.stringify(answers) == JSON.stringify(step.answers)) {
 			right = true;
+			party.confetti(document.body,{
+				count: party.variation.range(40, 80),
+			});
 		} else {
 			right = false;
 		}

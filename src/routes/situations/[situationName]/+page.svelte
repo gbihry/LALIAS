@@ -5,7 +5,6 @@
     import { SITUATIONS } from '$lib/DATA';
     import { page } from '$app/stores';
     
-
     let situation = SITUATIONS[$page.params.situationName];
 	$: situation = SITUATIONS[$page.params.situationName];
 
