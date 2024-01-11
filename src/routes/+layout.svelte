@@ -1,1 +1,6 @@
-<script>import "../app.pcss";</script><slot></slot>
+<script>
+	import '@kesval/design';
+	import '../app.pcss';
+</script>
+
+<slot />
