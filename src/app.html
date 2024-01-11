@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 
 		<!-- Manifest -->
-		<link rel="manifest" href="%sveltekit.assets%/site.webmanifest" />
+		<!-- <link rel="manifest" href="%sveltekit.assets%/site.webmanifest" /> -->
 
 		<!-- Favicons -->
 		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
@@ -54,15 +54,12 @@
 
 		<!-- Theming -->
 		<script>
-			const theme = localStorage.getItem('theme') || 'auto';
+			const theme = localStorage.getItem('theme') || 'light';
 			document.firstElementChild?.setAttribute('data-theme', theme);
 		</script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<h1>Website Error</h1>
-		<p>Please contact the administrator with this information:</p>
-		<p>Code %sveltekit.status%</p>
-		<p>%sveltekit.error.message%</p>
+		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

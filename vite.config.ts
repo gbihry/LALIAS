@@ -8,7 +8,10 @@ import { resolve } from 'path';
 export default defineConfig({
 	plugins: [
 		sveltekit(),
-		kitRoutes<KIT_ROUTES>(),
+		kitRoutes<KIT_ROUTES>({
+			format: 'route(path)',
+			
+		}),
 		paraglide({
 			project: './project.inlang',
 			outdir: './src/paraglide'
