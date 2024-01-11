@@ -12,11 +12,9 @@ export interface SituationSteps {
 }
 
 export interface SituationStep {
-	readonly answers: string[];
 	base_line: string;
+	readonly answers: string[];
 	readonly blank_state: string[];
-	name: string;
-	url_image: string;
 	readonly words: string[];
 }
 
@@ -37,29 +35,29 @@ const DICTIONARY = [
 const SITUATIONS: Situations = {
 	airport: {
 		steps: {
-			accueil: {
-				answers: ['coffee'],
-				base_line: 'Hello, what do you want ?',
-				blank_state: ['Hello, one ', 'please'],
-				name: 'Reception',
-				url_image: 'https://picsum.photos/500/300',
-				words: ['coffee', 'table', 'restaurant menu']
+			bags: {
+				answers: ['register', 'know'],
+				base_line: "Hello, if your bags are heavier than 20kg, it won't work.",
+				blank_state: ["Hello, I have a problem. I can't", 'my bags, do you', 'why?'],
+				words: ['understand', 'help', 'login', 'use', 'have', 'let', 'bags', 'plane']
 			},
-			addition: {
-				answers: ['use', 'credit'],
-				base_line: 'How do you want to pay ?',
+			eat: {
+				answers: ['where', 'airport'],
+				base_line: 'Hi, there are a few restaurant in the next corridor.',
+				blank_state: ['Excuse me, do you know', 'we can eat something in this'],
+				words: ['coffee', 'table', 'restaurant menu', 'why', 'eat', 'plane', 'know', 'restaurant']
+			},
+			sleep: {
+				answers: ['missed', 'sleep'],
+				base_line: 'Of course, there are hotels in the street next to the airport.',
 				blank_state: ['I will ', ' the', 'card please'],
-				name: 'Paiement',
-				url_image: 'https://picsum.photos/600/300',
-				words: ['use', 'credit']
+				words: ['use', 'credit', 'have', 'run', 'eat', 'hotels', 'airport']
 			},
-			order: {
-				answers: ['would like', 'a coffee'],
-				base_line: 'What would you like to order?',
-				blank_state: ['Hello, I ', 'order', 'please'],
-				name: 'Order',
-				url_image: 'https://picsum.photos/600/300',
-				words: ['would like', 'a coffee', 'a dinosaur']
+			lost_ticked: {
+				answers: ['plane ticket', 'help'],
+				base_line: 'Hello, you can call the security, they will help you.',
+				blank_state: ["Hello, I've lost my", 'for the fly N°45637. Can you', 'me?'],
+				words: ['plane', 'make', 'take', 'bags', 'kids']
 			}
 		},
 		url: 'https://picsum.photos/500/300'
@@ -70,16 +68,12 @@ const SITUATIONS: Situations = {
 				answers: ['room', 'two'],
 				base_line: 'Hello, can I help you ?',
 				blank_state: ['Hello, a ', 'for', 'please'],
-				name: 'Reception',
-				url_image: 'https://picsum.photos/500/300',
 				words: ['room', 'two', 'toilet']
 			},
 			order: {
 				answers: ['a burger', 'and'],
 				base_line: 'What would you like to order ?',
 				blank_state: ['Hello,', 'please', 'a orangina please'],
-				name: 'Order',
-				url_image: 'https://picsum.photos/600/300',
 				words: ['a burger', 'and', 'a duck']
 			}
 		},

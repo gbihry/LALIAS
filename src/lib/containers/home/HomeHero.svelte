@@ -7,7 +7,7 @@
 	{#each Object.keys(SITUATIONS) as situation}
 		<Card>
 			<h2>
-				{SITUATIONS[situation].nom}
+				{situation}
 			</h2>
 		</Card>
 	{/each}
